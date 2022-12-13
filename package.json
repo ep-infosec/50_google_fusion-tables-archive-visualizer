@@ -1,0 +1,51 @@
+{
+  "name": "fusion-tables-archive-visualizer",
+  "description": "Visualize archived Fusion Tables from Google Drive",
+  "version": "1.0.0",
+  "license": "",
+  "author": "Ubilabs",
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": "https://github.com/ubilabs/fusion-tables-archive-visualizer",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "start": "npm run clean && parcel --no-hmr --no-autoinstall ./src/index.html ./src/embed.ts",
+    "build": "npm run clean && parcel build ./src/index.html ./src/embed.ts && npm run prepend:header:js",
+    "build:deploy": "npm run clean && parcel build --public-url /geoviz/ ./src/index.html ./src/embed.ts && npm run prepend:header:js",
+    "prepend:header:js": "for file in dist/*.js; do cat src/license-header.txt $file > /tmp/out && mv /tmp/out $file; done",
+    "prettier:ci": "prettier --list-different './src/**/*.ts'",
+    "prettier:fix": "prettier --write './src/**/*.ts'",
+    "deploy": "npm run test && npm run build:deploy && gcloud app deploy",
+    "test": "npm run prettier:ci && tslint -p . -e '**/*.json'"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "bracketSpacing": false
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@danmarshall/deckgl-typings": "^2.2.1",
+    "@deck.gl/core": "^7.1.10",
+    "@deck.gl/google-maps": "^7.1.10",
+    "@deck.gl/layers": "^7.1.10",
+    "@turf/bbox": "^6.0.1",
+    "@types/gapi": "0.0.39",
+    "@types/gapi.auth2": "^0.0.50",
+    "@types/gapi.client": "^1.0.1",
+    "@types/gapi.client.drive": "^3.0.3",
+    "@types/geojson": "^7946.0.7",
+    "@types/google.analytics": "0.0.40",
+    "@types/googlemaps": "^3.37.0",
+    "@types/highlight.js": "^9.12.3",
+    "@types/papaparse": "^4.5.11",
+    "highlight.js": "^9.15.8",
+    "npm-run-all": "^4.1.5",
+    "papaparse": "^4.6.3",
+    "parcel": "^1.12.3",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  }
+}

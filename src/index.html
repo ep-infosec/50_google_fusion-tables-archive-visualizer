@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fusion Tables Archive Visualizer</title>
+  <meta name="description" content="The Fusion Tables Archive Visualizer is an easy way to visualize preserved maps generated with Google Fusion Tables.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafa">
+  <meta name="google-site-verification" content="gxbzmcQ-ceoGSfdzgeqfkS9IMGXr-f1Y0Y1u4i73kpY">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+</head>
+<body>
+  <div id="map"></div>
+
+  <svg class="spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <title>Loading</title>
+    <circle fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="6" stroke-miterlimit="10" cx="25" cy="25.2" r="19.9"></circle>
+  </svg>
+
+  <div id="signin" style="display: none;"></div>
+
+  <div class="is-large-warning is-large-warning--hidden">
+    This is a large dataset. You may experience problems loading the visualization.
+  </div>
+
+  <div style="display: none">
+    <button type="button" class="button" id="embed">Embed</button>
+  </div>
+
+  <section id="embed-overlay" class="embed-overlay embed-overlay--hidden">
+    <div class="embed-overlay__background"></div>
+    <form class="embed-overlay__content">
+      <header class="embed-overlay__content__row">
+        <h2>Publish</h2>
+      </header>
+
+      <button type="button" class="embed-overlay__content__close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <title>Close the embed overlay</title>
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </button>
+
+      <div class="embed-overlay__content__row">
+        <span class="input">
+          <input class="input__field" type="text" id="embed-api-key" placeholder="Enter your API key">
+          <label class="input__label" for="embed-api-key">API key
+        </span>
+        <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" title="Get an API Key for the Google Maps Javascript API" target="_blank" rel="noopener">
+          Help
+        </a>
+      </div>
+
+      <div class="embed-overlay__content__row">
+        <small>
+          Generate an API key for Google Maps and Drive API and enter it above. Place the complete snippet into your website code to display the visualization on your website.
+        </small>
+      </div>
+
+      <hr>
+
+      <div class="embed-overlay__content__row">
+        <span class="input">
+          <pre class="input__field input__field--code"><code id="embed-snippet" class="html javascript"></code></pre>
+          <textarea style="pointer-events: none; opacity: 0; position: absolute; left: -9999em;" id="embed-snippet-copy-area"></textarea>
+          <label class="input__label">HTML
+        </span>
+        <button type="button" class="button" id="copy-button">
+          Copy
+        </button>
+      </div>
+    </form>
+  </section>
+  <script src="./scripts/main.ts"></script>
+</body>
+</html>
